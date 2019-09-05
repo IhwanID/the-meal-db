@@ -18,9 +18,32 @@ class PhotoHero extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: onTap,
-            child: Image.network(
-              photo,
-              fit: BoxFit.contain,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(photo),
+                  fit: BoxFit.fill,
+                  alignment: Alignment.topCenter,
+                ),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  tag,
+                  style: TextStyle(shadows: [
+                    Shadow(
+                      blurRadius: 10.0,
+                      color: Colors.black,
+                      offset: Offset(5.0, 5.0),
+                    ),
+                    Shadow(
+                      color: Colors.black,
+                      blurRadius: 10.0,
+                      offset: Offset(-10.0, 5.0),
+                    ),
+                  ], fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
             ),
           ),
         ),
