@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:themealdb/view/detail_screen.dart';
 import '../model/meals.dart';
 import '../bloc/meals_bloc.dart';
 import '../animation/hero.dart';
@@ -68,21 +69,21 @@ class _DessertScreenState extends State<DessertScreen> {
               child: GridTile(
                 child: PhotoHero(
                   tag: snapshot.data.meals[index].strMeal,
-                  // onTap: () {
-                  //   Navigator.push(
-                  //       context,
-                  //       PageRouteBuilder(
-                  //         transitionDuration: Duration(milliseconds: 777),
-                  //         pageBuilder: (BuildContext context,
-                  //                 Animation<double> animation,
-                  //                 Animation<double> secondaryAnimation) =>
-                  //             DetailScreen(
-                  //           name: data[index].name,
-                  //           image: data[index].image,
-                  //           description: data[index].description,
-                  //         ),
-                  //       ));
-                  // },
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: Duration(milliseconds: 777),
+                          pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secondaryAnimation) =>
+                              DetailScreen(
+                            idMeal: snapshot.data.meals[index].idMeal,
+                              strMeal: snapshot.data.meals[index].strMeal,
+                              strMealThumb: snapshot.data.meals[index].strMealThumb
+                          ),
+                        ));
+                  },
                   photo: snapshot.data.meals[index].strMealThumb,
                 ),
               ),
