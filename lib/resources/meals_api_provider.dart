@@ -8,8 +8,8 @@ class MealsApiProvider {
 
   static final String _baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 
-  Future<MealsResult> fetchMovieList(String mealsType) async {
-    final response = await client.get(_baseUrl +"filter.php?c=$mealsType");
+  Future<MealsResult> fetchMeals(String type) async {
+    final response = await client.get(_baseUrl +"filter.php?c=$type");
     if (response.statusCode == 200) {
       return MealsResult.fromJson(json.decode(response.body));
     } else {
@@ -17,8 +17,8 @@ class MealsApiProvider {
     }
   }
 
-  Future<MealsResult> fetchDetailMeals(String mealsId) async {
-    final response = await client.get(_baseUrl + 'lookup.php?i=$mealsId');
+  Future<MealsResult> fetchDetail(String id) async {
+    final response = await client.get(_baseUrl + 'lookup.php?i=$id');
     if (response.statusCode == 200) {
       return MealsResult.fromJson(json.decode(response.body));
     } else {

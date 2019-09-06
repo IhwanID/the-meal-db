@@ -27,8 +27,8 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   void dispose() {
-    super.dispose();
     bloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,120 +77,6 @@ class _DetailScreenState extends State<DetailScreen> {
       String ingredient4,
       String ingredient5,
       String desc) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(5.0),
-            child: Row(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Category : ",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    category,
-                    style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(5.0),
-            child: Row(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Area : ",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    area,
-                    style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(5.0),
-            child: Column(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Ingredient :",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    ingredient1+ ', ' +
-                        ingredient1 + ', ' +
-                        ingredient2 + ', ' +
-                        ingredient3 + ', ' +
-                        ingredient4 + ', ' +
-                        ingredient5,
-                    style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(5.0),
-            child: Column(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Instructions :",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    desc,
-                    style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+    return Text(desc); 
+    }
 }
