@@ -1,16 +1,16 @@
 import '../resources/repository.dart';
 import 'package:rxdart/rxdart.dart';
-import '../model/meals.dart';
+import '../model/item_model.dart';
 
 class MealsBloc {
   final _repository = Repository();
-  final _mealsFetcher = PublishSubject<MealsResult>();
+  final _mealsFetcher = PublishSubject<ItemModel>();
 
-  Observable<MealsResult> get allMeals => _mealsFetcher.stream;
+  Observable<ItemModel> get allMeals => _mealsFetcher.stream;
 
-  fetchAllMeals(String mealsType) async {
-    MealsResult mealsList = await _repository.fetchAllMeals(mealsType);
-    _mealsFetcher.sink.add(mealsList);
+  fetchAllMeals(String type) async {
+    ItemModel itemModel = await _repository.fetchAllMeals(type);
+    _mealsFetcher.sink.add(itemModel);
   }
 
   dispose() {

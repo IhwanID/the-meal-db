@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:themealdb/bloc/detail_bloc.dart';
-import 'package:themealdb/model/meals.dart';
+import 'package:themealdb/model/item_model.dart';
 
 class DetailScreen extends StatefulWidget {
   final String idMeal;
@@ -17,7 +17,7 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   final bloc = DetailBloc();
-  MealsResult mealsResult;
+  ItemModel itemModel;
 
   @override
   void initState() {
@@ -35,21 +35,21 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            title: Text('Detail Makanan' + widget.idMeal),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () => Navigator.pop(context, false),
-            )),
+          title: Text('Detail Makanan' + widget.idMeal),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context, false),
+          )),
       body: getDetailMeal(),
     );
   }
 
-  getDetailMeal(){
+  getDetailMeal() {
     return StreamBuilder(
         stream: bloc.detailMeals,
-        builder: (context, AsyncSnapshot<MealsResult> snapshot) {
+        builder: (context, AsyncSnapshot<ItemModel> snapshot) {
           if (snapshot.hasData) {
-            mealsResult = snapshot.data;
+            itemModel = snapshot.data;
             return _showListDetail(
                 snapshot.data.meals[0].strCategory,
                 snapshot.data.meals[0].strArea,
@@ -62,9 +62,9 @@ class _DetailScreenState extends State<DetailScreen> {
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
-          return Center(child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white)
-          ));
+          return Center(
+              child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
         });
   }
 
@@ -77,6 +77,6 @@ class _DetailScreenState extends State<DetailScreen> {
       String ingredient4,
       String ingredient5,
       String desc) {
-    return Text(desc); 
-    }
+    return Text(desc);
+  }
 }

@@ -1,9 +1,9 @@
-class MealsResult {
+class ItemModel {
   List<Meals> meals;
 
-  MealsResult({this.meals});
+  ItemModel({this.meals});
 
-  MealsResult.fromJson(Map<String, dynamic> json) {
+  ItemModel.fromJson(Map<String, dynamic> json) {
     if (json['meals'] != null) {
       meals = new List<Meals>();
       json['meals'].forEach((v) {
