@@ -13,7 +13,7 @@ class MealsBloc {
     _mealsFetcher.sink.add(itemModel);
   }
 
-   fetchSeafood() async {
+  fetchSeafood() async {
     ItemModel itemModel = await _repository.fetchAllMeals("Seafood");
     _mealsFetcher.sink.add(itemModel);
   }

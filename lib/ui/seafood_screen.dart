@@ -26,11 +26,11 @@ class _SeafoodScreenState extends State<SeafoodScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: getSeafoofList(),
+      body: getSeafoodList(),
     );
   }
 
-  getSeafoofList() {
+  getSeafoodList() {
     return Container(
       child: Center(
         child: StreamBuilder(
@@ -43,7 +43,7 @@ class _SeafoodScreenState extends State<SeafoodScreen> {
             }
             return Center(
                 child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow)));
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)));
           },
         ),
       ),

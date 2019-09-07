@@ -6,7 +6,7 @@ import '../animation/hero.dart';
 Widget buildList(AsyncSnapshot<ItemModel> snapshot) => GridView.builder(
       itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
       gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           child: Card(

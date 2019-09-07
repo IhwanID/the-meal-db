@@ -35,7 +35,7 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Detail Makanan'),
+          title: Text(widget.strMeal),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context, false),
@@ -51,14 +51,7 @@ class _DetailScreenState extends State<DetailScreen> {
           if (snapshot.hasData) {
             itemModel = snapshot.data;
             return _showListDetail(
-                snapshot.data.meals[0].strCategory,
-                snapshot.data.meals[0].strArea,
-                snapshot.data.meals[0].strIngredient1,
-                snapshot.data.meals[0].strIngredient2,
-                snapshot.data.meals[0].strIngredient3,
-                snapshot.data.meals[0].strIngredient4,
-                snapshot.data.meals[0].strIngredient5,
-                snapshot.data.meals[0].strInstructions);
+                itemModel);
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
           }
@@ -69,14 +62,7 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   Widget _showListDetail(
-      String category,
-      String area,
-      String ingredient1,
-      String ingredient2,
-      String ingredient3,
-      String ingredient4,
-      String ingredient5,
-      String desc) {
+     ItemModel itemModel) {
     return Container(
       padding: EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -112,7 +98,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      desc,
+                      itemModel.meals[0].strInstructions,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
