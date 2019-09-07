@@ -35,7 +35,7 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Detail Makanan' + widget.idMeal),
+          title: Text('Detail Makanan'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context, false),
@@ -64,7 +64,7 @@ class _DetailScreenState extends State<DetailScreen> {
           }
           return Center(
               child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white)));
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)));
         });
   }
 
@@ -77,6 +77,51 @@ class _DetailScreenState extends State<DetailScreen> {
       String ingredient4,
       String ingredient5,
       String desc) {
-    return Text(desc);
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Hero(
+              tag: widget.strMeal,
+              child: Image.network(widget.strMealThumb),
+            ),
+            Center(
+                child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                widget.strMeal,
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              ),
+            )),
+            Container(
+              padding: EdgeInsets.all(4.0),
+              child: Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Deskripsi :",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      desc,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

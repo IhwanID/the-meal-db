@@ -8,8 +8,13 @@ class MealsBloc {
 
   Observable<ItemModel> get allMeals => _mealsFetcher.stream;
 
-  fetchAllMeals(String type) async {
-    ItemModel itemModel = await _repository.fetchAllMeals(type);
+  fetchDessert() async {
+    ItemModel itemModel = await _repository.fetchAllMeals("Dessert");
+    _mealsFetcher.sink.add(itemModel);
+  }
+
+   fetchSeafood() async {
+    ItemModel itemModel = await _repository.fetchAllMeals("Seafood");
     _mealsFetcher.sink.add(itemModel);
   }
 

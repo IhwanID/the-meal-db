@@ -20,12 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
           currentIndex: _index,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.free_breakfast),
-              title: Text('Seafood'),
+              icon: Icon(Icons.cake),
+              title: Text('Dessert'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.fastfood),
-              title: Text('Dessert'),
+              title: Text('Seafood'),
             )
           ],
           onTap: (index) {

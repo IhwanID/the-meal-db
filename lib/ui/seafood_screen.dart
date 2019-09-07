@@ -14,7 +14,7 @@ class _SeafoodScreenState extends State<SeafoodScreen> {
   @override
   void initState() {
     super.initState();
-    bloc.fetchAllMeals('Seafood');
+    bloc.fetchSeafood();
   }
 
   @override

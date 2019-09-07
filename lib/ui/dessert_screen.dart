@@ -14,7 +14,7 @@ class _DessertScreenState extends State<DessertScreen> {
   @override
   void initState() {
     super.initState();
-    bloc.fetchAllMeals('Dessert');
+    bloc.fetchDessert();
   }
 
   @override
