@@ -34,13 +34,34 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(widget.strMeal),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () => Navigator.pop(context, false),
-          )),
-      body: getDetailMeal(),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 250,
+              floating: false,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
+                title: Text(
+                  widget.strMeal,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0,
+                  ),
+                ),
+                background: Hero(
+              tag: widget.strMeal,
+              child: Image.network(widget.strMealThumb,width: double.infinity,
+                          fit: BoxFit.cover),
+            ),
+              ),
+            ),
+          ];
+        },
+        body: getDetailMeal(),
+      ),
     );
   }
 
@@ -69,18 +90,6 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Hero(
-              tag: widget.strMeal,
-              child: Image.network(widget.strMealThumb),
-            ),
-            Center(
-                child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                widget.strMeal,
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
-            )),
             Container(
               padding: EdgeInsets.all(4.0),
               child: Column(
