@@ -27,4 +27,13 @@ class MealsApiProvider {
       throw Exception('Failed to load detail meals');
     }
   }
+
+  Future<ItemModel> searchMeals(String name) async {
+    final response = await client.get("$_baseUrl/search.php?s=$name");
+    if (response.statusCode == 200) {
+      return ItemModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load $name meals');
+    }
+  }
 }
