@@ -10,4 +10,7 @@ class Repository {
 
   Future<ItemModel> fetchDetailMeals(String detail) =>
       mealsApiProvider.fetchDetail(detail);
+
+  Future<ItemModel> searchMeals(String name) =>
+      mealsApiProvider.searchMeals(name);
 }
