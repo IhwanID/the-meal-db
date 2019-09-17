@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:themealdb/ui/dessert_screen.dart';
+import 'package:themealdb/ui/favorite/favorite_screen.dart';
 import 'package:themealdb/ui/seafood_screen.dart';
+import 'package:themealdb/ui/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,39 +12,67 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _index = 0;
 
+  _setPage() {
+    if (_index == 0) {
+      return DessertScreen();
+    } else if (_index == 1) {
+      return SeafoodScreen();
+    } else {
+      return FavoriteScreen();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('The Meals DB'),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _index,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.cake),
-              title: Text('Dessert'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.fastfood),
-              title: Text('Seafood'),
-            )
-          ],
-          onTap: (index) {
-            switch (index) {
-              case 0:
-                setState(() {
-                  _index = 0;
-                });
-                break;
-              case 1:
-                setState(() {
-                  _index = 1;
-                });
-                break;
-            }
+      appBar: AppBar(
+        title: Text('The Meals DB'),
+        actions: <Widget>[
+          IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchScreen()));
           },
-        ),
-        body: _index == 0 ? DessertScreen() : SeafoodScreen());
+        )
+        ],
+      ),
+      body: _setPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _index,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.cake),
+            title: Text('Dessert'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.fastfood),
+            title: Text('Seafood'),
+          ),BottomNavigationBarItem(
+            icon: Icon(Icons.star),
+            title: Text('Favorite'),
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              setState(() {
+                _index = 0;
+              });
+              break;
+            case 1:
+              setState(() {
+                _index = 1;
+              });
+              break;
+            case 2:
+              setState(() {
+                _index = 2;
+              });
+              break;
+          }
+        },
+      ),
+    );
   }
 }

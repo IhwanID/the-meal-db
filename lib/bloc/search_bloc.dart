@@ -6,7 +6,7 @@ class SearchBloc{
   final _repository = Repository();
   final _searchFetcher = PublishSubject<ItemModel>();
 
-  Observable<ItemModel> get allMeals => _searchFetcher.stream;
+  Observable<ItemModel> get searchMeal => _searchFetcher.stream;
 
   searchMealsByName(String name) async {
     ItemModel itemModel = await _repository.searchMeals(name);

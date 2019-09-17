@@ -4,7 +4,7 @@ import '../model/item_model.dart';
 import '../animation/hero.dart';
 
 Widget buildList(AsyncSnapshot<ItemModel> snapshot) => GridView.builder(
-      itemCount: snapshot == null ? 0 : snapshot.data.meals.length,
+      itemCount: snapshot == null ? 0 : snapshot?.data?.meals?.length ?? 0,
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
