@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:themealdb/animation/hero.dart';
+import 'package:themealdb/model/item_model.dart';
 import 'package:themealdb/ui/detail_screen.dart';
-import '../model/item_model.dart';
-import '../animation/hero.dart';
 
-Widget buildList(AsyncSnapshot<ItemModel> snapshot, String type) => GridView.builder(
-      itemCount: snapshot == null ? 0 : snapshot?.data?.meals?.length ?? 0,
+
+Widget buildListFavorite(List<Meals> data, String type) => GridView.builder(
+      itemCount: data.length,
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
       itemBuilder: (BuildContext context, int index) {
@@ -19,7 +20,7 @@ Widget buildList(AsyncSnapshot<ItemModel> snapshot, String type) => GridView.bui
             margin: EdgeInsets.all(10),
             child: GridTile(
               child: PhotoHero(
-                tag: snapshot.data.meals[index].strMeal,
+                tag: data[index].strMeal,
                 onTap: () {
                   Navigator.push(
                       context,
@@ -29,14 +30,14 @@ Widget buildList(AsyncSnapshot<ItemModel> snapshot, String type) => GridView.bui
                                 Animation<double> animation,
                                 Animation<double> secondaryAnimation) =>
                             DetailScreen(
-                                idMeal: snapshot.data.meals[index].idMeal,
-                                strMeal: snapshot.data.meals[index].strMeal,
+                                idMeal: data[index].idMeal,
+                                strMeal: data[index].strMeal,
                                 strMealThumb:
-                                    snapshot.data.meals[index].strMealThumb,
+                                    data[index].strMealThumb,
                                     type: type,),
                       ));
                 },
-                photo: snapshot.data.meals[index].strMealThumb,
+                photo: data[index].strMealThumb,
               ),
             ),
           ),

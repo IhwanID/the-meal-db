@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:themealdb/model/item_model.dart';
+import 'package:themealdb/resources/favorite_local_provider.dart';
+import 'package:themealdb/ui/favorite/build_list_favorite.dart';
 
 class SeafoodFavoriteScreen extends StatefulWidget {
   @override
@@ -6,10 +9,52 @@ class SeafoodFavoriteScreen extends StatefulWidget {
 }
 
 class _SeafoodFavoriteScreenState extends State<SeafoodFavoriteScreen> {
+  Future<List<Meals>> _seafoodFavorite;
+
+  @override
+  void initState() {
+    _seafoodFavorite = FavoriteLocalProvider.db.getFavoriteMealsByType("seafood");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+   return Container(
+      child: FutureBuilder(
+        initialData: <Meals>[],
+        future: _seafoodFavorite,
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Meals>> snapshot) {
+          if (snapshot.hasError) {
+            //showToast(context, snapshot.error.toString(), duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+            return Center(
+              child: Text("Something wrong"),
+            );
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            List<Meals> favoriteFoods = snapshot.data;
+            if (favoriteFoods.isEmpty) {
+              return Center(
+                child: Text(
+                  "Seafood Favorite not available",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              );
+            } else {
+              return buildListFavorite(favoriteFoods, "seafood");
+            }
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
     );
   }
+
+  
 }

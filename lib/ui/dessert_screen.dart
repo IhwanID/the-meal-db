@@ -35,7 +35,7 @@ class _DessertScreenState extends State<DessertScreen> {
       stream: bloc.allMeals,
       builder: (context, AsyncSnapshot<ItemModel> snapshot) {
         if (snapshot.hasData) {
-          return buildList(snapshot);
+          return buildList(snapshot, "dessert");
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }

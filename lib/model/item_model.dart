@@ -69,6 +69,7 @@ class Meals {
   String strMeasure18;
   String strMeasure19;
   String strMeasure20;
+  String type;
 
   Meals(
       {this.idMeal,
@@ -117,7 +118,8 @@ class Meals {
       this.strMeasure17,
       this.strMeasure18,
       this.strMeasure19,
-      this.strMeasure20});
+      this.strMeasure20,
+      this.type});
 
   Meals.fromJson(Map<String, dynamic> json) {
     idMeal = json['idMeal'];
@@ -167,6 +169,7 @@ class Meals {
     strMeasure18 = json['strMeasure18'];
     strMeasure19 = json['strMeasure19'];
     strMeasure20 = json['strMeasure20'];
+    type = json['type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -218,6 +221,7 @@ class Meals {
     data['strMeasure18'] = this.strMeasure18;
     data['strMeasure19'] = this.strMeasure19;
     data['strMeasure20'] = this.strMeasure20;
+    data['type'] = this.type;
     return data;
   }
 }

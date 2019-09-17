@@ -60,7 +60,7 @@ class _SearchScreenState extends State<SearchScreen> {
       stream: bloc.searchMeal,
       builder: (context, AsyncSnapshot<ItemModel> snapshot) {
         if (snapshot.hasData) {
-          return buildList(snapshot);
+          return buildList(snapshot, "");
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }

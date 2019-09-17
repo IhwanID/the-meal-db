@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:themealdb/bloc/detail_bloc.dart';
 import 'package:themealdb/model/item_model.dart';
+import 'package:themealdb/resources/favorite_local_provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final String idMeal;
   final String strMeal;
   final String strMealThumb;
+  final String type;
 
   const DetailScreen(
-      {Key key, @required this.idMeal, this.strMeal, this.strMealThumb})
+      {Key key, @required this.idMeal, this.strMeal, this.strMealThumb, this.type})
       : super(key: key);
 
   @override
@@ -18,11 +20,15 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   final bloc = DetailBloc();
   ItemModel itemModel;
+  bool _isFavorite = false;
 
   @override
   void initState() {
     super.initState();
     bloc.fetchDetailMeals(widget.idMeal);
+     FavoriteLocalProvider.db.getFavoriteMealsById(widget.idMeal).then((value) {
+      setState(() => _isFavorite = value != null);
+    });
   }
 
   @override
@@ -41,6 +47,9 @@ class _DetailScreenState extends State<DetailScreen> {
               expandedHeight: 250,
               floating: false,
               pinned: true,
+              actions: <Widget>[
+               actionSaveorDelete()
+              ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Text(
@@ -119,4 +128,45 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
     );
   }
+
+Widget actionSaveorDelete(){
+  if (_isFavorite) {
+      return GestureDetector(
+        onTap: () {
+          FavoriteLocalProvider.db.deleteFavoriteMealsById(widget.idMeal).then((value) {
+            if (value > 0) {
+              setState(() => _isFavorite = false);
+            }
+          });
+         // showToast(context, "Remove from Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        },
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Icon(Icons.favorite),
+        ),
+      );
+    } else {
+      return GestureDetector(
+        onTap: () {
+          Meals favoriteFood = Meals(
+            idMeal: widget.idMeal,
+            strMeal: widget.strMeal,
+            strMealThumb: widget.strMealThumb,
+            type: widget.type
+          );
+          FavoriteLocalProvider.db.addFavoriteMeals(favoriteFood).then((value) {
+            if (value > 0) {
+              setState(() => _isFavorite = true);
+            }
+          });
+          //showToast(context, "Add to Favorite", duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+        },
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Icon(Icons.favorite_border),
+        ),
+      );
+    }
 }
+}
+
