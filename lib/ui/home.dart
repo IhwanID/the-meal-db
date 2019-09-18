@@ -3,6 +3,7 @@ import 'package:themealdb/ui/dessert_screen.dart';
 import 'package:themealdb/ui/favorite/favorite_screen.dart';
 import 'package:themealdb/ui/seafood_screen.dart';
 import 'package:themealdb/ui/search_screen.dart';
+import 'package:themealdb/flavor/config.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -26,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('The Meals DB'),
+        leading: Config.appIcon,
+        title: Text(Config.appString),
         actions: <Widget>[
           IconButton(
           icon: Icon(Icons.search),
