@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: _setPage(),
       bottomNavigationBar: BottomNavigationBar(
+        key: Key('bottom'),
         currentIndex: _index,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

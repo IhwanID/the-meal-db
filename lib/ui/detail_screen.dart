@@ -47,6 +47,13 @@ class _DetailScreenState extends State<DetailScreen> {
               expandedHeight: 250,
               floating: false,
               pinned: true,
+              leading: IconButton(
+                key: Key('back'),
+                icon: Icon(Icons.arrow_back),
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+              ),
               actions: <Widget>[
                actionSaveorDelete()
               ],
