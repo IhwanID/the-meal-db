@@ -87,27 +87,27 @@ class FavoriteLocalProvider {
 
   Future<List<Meals>> getFavoriteMealsByType(String type) async {
     final db = await database;
-    var res = await db.query(table, where: "type = ?", whereArgs: [type]);
-    List<Meals> meals = res.isEmpty ? [] : res.map((item) => Meals.fromJson(item)).toList();
+    var result = await db.query(table, where: "type = ?", whereArgs: [type]);
+    List<Meals> meals = result.isEmpty ? [] : result.map((item) => Meals.fromJson(item)).toList();
     return meals;
   }
 
   getFavoriteMealsById(String idMeal) async {
     final db = await database;
-    var res =
+    var result =
         await db.query(table, where: "idMeal = ?", whereArgs: [idMeal]);
-    return res.isEmpty ? null : Meals.fromJson(res.first);
+    return result.isEmpty ? null : Meals.fromJson(result.first);
   }
 
   addFavoriteMeals(Meals meals) async {
     final db = await database;
-    var res = await db.insert(table, meals.toJson());
-    return res;
+    var result = await db.insert(table, meals.toJson());
+    return result;
   }
 
   deleteFavoriteMealsById(String id) async {
     final db = await database;
-    var res = await db.delete(table, where: "idMeal = ?", whereArgs: [id]);
-    return res;
+    var result = await db.delete(table, where: "idMeal = ?", whereArgs: [id]);
+    return result;
   }
 }

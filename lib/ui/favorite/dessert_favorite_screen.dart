@@ -25,16 +25,13 @@ Future<List<Meals>> dessertFavorite;
         builder:
             (BuildContext context, AsyncSnapshot<List<Meals>> snapshot) {
           if (snapshot.hasError) {
-            //showToast(context, snapshot.error.toString(), duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-            return Center(
-              child: Text("Something wrong"),
-            );
+            return Text(snapshot.error.toString());
           } else if (snapshot.connectionState == ConnectionState.done) {
             List<Meals> favoriteFoods = snapshot.data;
             if (favoriteFoods.isEmpty) {
               return Center(
                 child: Text(
-                  "Seafood Favorite not available",
+                  "No Favorite Dessert Available",
                   style: TextStyle(
                     color: Colors.blue,
                     fontSize: 20.0,
