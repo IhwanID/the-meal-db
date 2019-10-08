@@ -27,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Config.appIcon,
         title: Text(Config.appString),
         actions: <Widget>[
           IconButton(
